@@ -38,7 +38,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (Input.GetButtonDown("Jump") && isGrounded)
         {
             rb.velocity = Vector2.up * jumpVelocity;
-            SoundManager.PlaySound(SoundManager.Sound.playerJump);
+           // SoundManager.PlaySound(SoundManager.Sound.playerJump);
             numMovements++;
             
         }
@@ -70,7 +70,7 @@ public class PlayerBehaviour : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         Vector3 move = new Vector3( x * speed * Time.fixedDeltaTime, rb.velocity.y, 0f);
         if (!isGrounded) {
-            move = new Vector3(x * speed/1.8f * Time.fixedDeltaTime, rb.velocity.y, 0f); 
+           // move = new Vector3(x * speed/1.8f * Time.fixedDeltaTime, rb.velocity.y, 0f); 
         }
         if ( hit_wall_R.collider != null)
         {
@@ -78,7 +78,7 @@ public class PlayerBehaviour : MonoBehaviour
             if (x >0)
             {
                
-                move = new Vector3(0, rb.velocity.y, 0f);
+              //  move = new Vector3(0, rb.velocity.y, 0f);
             }
         }else
         {
@@ -91,7 +91,7 @@ public class PlayerBehaviour : MonoBehaviour
             {
                 
 
-                move = new Vector3(0, rb.velocity.y, 0f);
+             //   move = new Vector3(0, rb.velocity.y, 0f);
             }
         }
         else
@@ -107,7 +107,7 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.Log(col.gameObject.name);
         if (col.gameObject.name == "Platforms")
         {
-            SoundManager.PlaySound(SoundManager.Sound.playerLand);
+           // SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
 }
