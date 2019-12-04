@@ -10,13 +10,13 @@ public class EnemyBehaviour : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        speed = 6f;
+        speed = 2f;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position =
-      new Vector2(startPosition.x , transform.position.y + (Mathf.Sin(Time.time * speed) * 0.01f));
+      new Vector2(startPosition.x + (Mathf.Sin(Time.time * speed) * 0.6f), transform.position.y);
     }
 }

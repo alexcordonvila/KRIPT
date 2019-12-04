@@ -26,6 +26,8 @@ public class PlayerBehaviour : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        Time.timeScale = 1;
+        Time.fixedDeltaTime = 0.02F;
         numMovements = 0;
         wall_R = false;
         wall_L = false;
@@ -52,12 +54,15 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.DrawRay(transform.position, Vector2.right * rayCheckDistance, Color.green);
         Debug.DrawRay(transform.position, Vector2.left * rayCheckDistance, Color.green);
 
-
+        if(rb.velocity.y == 0) { 
+        Debug.Log("Velocity y= "+rb.velocity);
+        }
     }
 
     void FixedUpdate()
     {
         Jump();
+        
         SloWMotionMovement();
        
 
@@ -91,8 +96,10 @@ public class PlayerBehaviour : MonoBehaviour
         //{
         //    wall_L = false;
         //}
-      //  Debug.Log(rb.velocity.y);
-        if (rb.velocity.y < -30 )
+        //  Debug.Log(rb.velocity.y);
+        if (rb.velocity.y < -15) SloWMotionMovement_Vel();
+
+        if (rb.velocity.y < -18)
         {
             Application.LoadLevel(Application.loadedLevel);
         }
@@ -106,8 +113,18 @@ public class PlayerBehaviour : MonoBehaviour
         {
             GameObject cam = GameObject.Find("Main Camera");
             iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
-         //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
+            isGrounded = true;
+            //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
 
+        }
+        if (col.gameObject.tag == "MovingPlatforms")
+        {
+            GameObject platform = GameObject.Find("Moving Platforms");
+            this.transform.parent = platform.transform;
+            Debug.Log("Moving Platform ");
+        }else
+        {
+            this.transform.parent = null;
         }
         if (col.gameObject.name == "Door")
         {
@@ -132,20 +149,29 @@ public class PlayerBehaviour : MonoBehaviour
         }
 
     }
+    void SloWMotionMovement_Vel()
+    {
+            Debug.Log("Fire1" + Input.GetAxis("Fire1"));
+            Time.timeScale = 0.1f;
+            Time.fixedDeltaTime = 0.02F * Time.timeScale;
+    }
     void Jump()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
-            rb.velocity = Vector2.up * jumpVelocity ;
+            if (isGrounded) {
+                rb.velocity = new Vector2(rb.velocity.x, 0f);
+                rb.velocity = Vector2.up * jumpVelocity ;
            // SoundManager.PlaySound(SoundManager.Sound.playerJump);
             numMovements++;
-
+           }
         }
-        if (rb.velocity.y < 0)
-        {
-            rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplayer - 1) * Time.fixedDeltaTime;
-        }
-        else if (rb.velocity.y > 0 && !Input.GetButtonDown("Jump"))
+          if (rb.velocity.y < 0)
+           {
+               rb.velocity += Vector2.up * Physics.gravity.y * (fallMultiplayer - 1) * Time.fixedDeltaTime;
+            
+           }
+        else if (rb.velocity.y > 0  && !Input.GetButtonDown("Jump"))
         {
             rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplayer - 1) * Time.fixedDeltaTime;
 
