@@ -15,13 +15,13 @@ public class LimitedMovement : MonoBehaviour
     void Start()
     {
         numMovements = player.GetComponent<PlayerBehaviour>().numMovements;
-        MAXMOVEMENTS = 4;
-        for (int i = 0; i < MAXMOVEMENTS; i++)
-        {
-            //object1.transform.parent = object2;
-            dottemp = Instantiate(dot, new Vector2(this.transform.position.x + i, this.transform.position.y), Quaternion.identity);
-            dottemp.transform.parent = this.transform;
-        }
+        
+        //for (int i = 0; i < MAXMOVEMENTS; i++)
+        //{
+        //    //object1.transform.parent = object2;
+        //    dottemp = Instantiate(dot, new Vector2(this.transform.position.x + i, this.transform.position.y), Quaternion.identity);
+        //    dottemp.transform.parent = this.transform;
+        //}
         jumpFlag = false;
     }
 
@@ -32,10 +32,10 @@ public class LimitedMovement : MonoBehaviour
        // Debug.Log(numMovements + " , "+ MAXMOVEMENTS);
         if (Input.GetButtonDown("Jump") && numMovements<MAXMOVEMENTS)
         {
-            dottemp = this.gameObject.transform.GetChild(this.transform.childCount - 1).gameObject;
-            Destroy(dottemp);
+            //dottemp = this.gameObject.transform.GetChild(this.transform.childCount - 1).gameObject;
+            //Destroy(dottemp);
         }
-        if (numMovements == MAXMOVEMENTS)
+        if (numMovements >= MAXMOVEMENTS)
         {
             Application.LoadLevel(Application.loadedLevel);
         }
