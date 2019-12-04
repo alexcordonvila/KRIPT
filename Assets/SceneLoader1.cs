@@ -25,7 +25,7 @@ public class SceneLoader1 : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.N)) NextScene();
             if (Input.GetKeyDown(KeyCode.B)) BackScene();
-            if (Input.GetKeyDown(KeyCode.R)) ResetScene();
+            if (Input.GetKeyDown(KeyCode.Space)) ResetScene();
         }
 
     }
