@@ -106,7 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (rb.velocity.y < -13)
         {
-            Application.LoadLevel(Application.loadedLevel);
+           // Application.LoadLevel(Application.loadedLevel);
         }
     }
 
@@ -131,7 +131,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (col.gameObject.name == "Door")
         {
             GameObject cam = GameObject.Find("Main Camera");
-            Application.LoadLevel(Application.loadedLevel);
+           // Application.LoadLevel(Application.loadedLevel);
          //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
@@ -270,7 +270,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (seconds<=0 && miliseconds<=0)
             {
-                Application.LoadLevel(Application.loadedLevel);
+              //  Application.LoadLevel(Application.loadedLevel);
 
             }
             

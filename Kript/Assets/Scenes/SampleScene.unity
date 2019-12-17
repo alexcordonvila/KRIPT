@@ -3492,7 +3492,7 @@ MonoBehaviour:
   onAirMovementLimit: 1.5
   fallMultiplayer: 3
   lowJumpMultiplayer: 2.5
-  jumpVelocity: 5
+  jumpVelocity: 6.34
   rayOrigin: {fileID: 1205879492}
   rayCheckDistance: 0.23
   rayCheckDistance_two: 0.39
