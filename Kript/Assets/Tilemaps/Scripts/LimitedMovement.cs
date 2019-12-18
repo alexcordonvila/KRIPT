@@ -14,6 +14,7 @@ public class LimitedMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        MAXMOVEMENTS = 5;
         numMovements = player.GetComponent<PlayerBehaviour>().numMovements;
         
         //for (int i = 0; i < MAXMOVEMENTS; i++)

@@ -106,23 +106,23 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (rb.velocity.y < -13)
         {
-           // Application.LoadLevel(Application.loadedLevel);
+            Application.LoadLevel(Application.loadedLevel);
         }
     }
 
     void OnCollisionEnter2D(Collision2D col)
     {
-        if (col.gameObject.name == "Platforms_Tilemap")
+        if (col.gameObject.tag == "Platforms")
         {
             GameObject cam = GameObject.Find("Main Camera");
             iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isGrounded = true;
-            isCollisionGrounded = true;
+           // isCollisionGrounded = true;
             //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
         if (col.gameObject.tag == "MovingPlatforms")
         {
-            GameObject platform = GameObject.Find("Moving Platforms");
+            GameObject platform = GameObject.Find("MovingPlatforms");
             this.transform.parent = platform.transform;
         }else
         {
@@ -131,7 +131,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (col.gameObject.name == "Door")
         {
             GameObject cam = GameObject.Find("Main Camera");
-           // Application.LoadLevel(Application.loadedLevel);
+            Application.LoadLevel(Application.loadedLevel);
          //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
@@ -146,7 +146,7 @@ public class PlayerBehaviour : MonoBehaviour
             //GameObject cam = GameObject.Find("Main Camera");
             //iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isGrounded = false;
-            isCollisionGrounded = false;
+        //    isCollisionGrounded = false;
             //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
@@ -186,7 +186,7 @@ public class PlayerBehaviour : MonoBehaviour
         
         if (JumpEvent)
         {
-            if (isGrounded || isCollisionGrounded) {
+            if (isGrounded /*|| isCollisionGrounded*/) {
                 //rb.velocity = new Vector2(rb.velocity.x, 0f);
                 //rb.velocity = Vector2.up * jumpVelocity ;
                 rb.AddForce(Vector2.up * jumpVelocity, ForceMode2D.Impulse);
@@ -224,8 +224,8 @@ public class PlayerBehaviour : MonoBehaviour
         RaycastHit2D hit_down = Physics2D.Raycast(rayOrigin.transform.position, Vector2.down, rayCheckDistance_two);
         RaycastHit2D hit_downR = Physics2D.Raycast(rayOrigin.transform.position + new Vector3(foot, 0, 0), Vector2.down, rayCheckDistance_two);
         RaycastHit2D hit_downL = Physics2D.Raycast(rayOrigin.transform.position - new Vector3(foot, 0 ,0), Vector2.down, rayCheckDistance_two);
-        hit_wall_R = Physics2D.Raycast(transform.position , Vector2.right , rayCheckDistance);
-        hit_wall_L = Physics2D.Raycast(transform.position , Vector2.left , rayCheckDistance);
+        hit_wall_R = Physics2D.Raycast(transform.position + new Vector3(0, 0.3f, 0), Vector2.right , rayCheckDistance);
+        hit_wall_L = Physics2D.Raycast(transform.position + new Vector3(0, 0.3f, 0), Vector2.left , rayCheckDistance);
         if ( hit_wall_R.collider != null ) {  wall_R = true;  } else { wall_R = false; }
         if (hit_wall_L.collider != null) { wall_L = true; } else { wall_L= false; }
         if (hit_down.collider != null || hit_downR.collider != null || hit_downL.collider != null) { isGrounded = true; } else { isGrounded = false; }
@@ -234,8 +234,8 @@ public class PlayerBehaviour : MonoBehaviour
         Debug.DrawRay(transform.position , Vector2.down * rayCheckDistance_two, Color.red);
         Debug.DrawRay(transform.position - new Vector3(foot, 0, 0), Vector2.down * rayCheckDistance_two, Color.red);
         Debug.DrawRay(transform.position + new Vector3(foot, 0, 0), Vector2.down * rayCheckDistance_two, Color.red);
-        Debug.DrawRay(transform.position , Vector2.right * rayCheckDistance, Color.green);
-        Debug.DrawRay(transform.position , Vector2.left * rayCheckDistance, Color.green);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.3f, 0), Vector2.right * rayCheckDistance, Color.green);
+        Debug.DrawRay(transform.position + new Vector3(0, 0.3f, 0), Vector2.left * rayCheckDistance, Color.green);
     }
     private void Restart()
     {
@@ -246,7 +246,7 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void AirTimeCountDown()
     {
-        if (!isGrounded && !isCollisionGrounded)
+        if (!isGrounded /*&& !isCollisionGrounded*/)
         {
             //if (JumpEvent)
             //{
@@ -270,7 +270,7 @@ public class PlayerBehaviour : MonoBehaviour
 
             if (seconds<=0 && miliseconds<=0)
             {
-              //  Application.LoadLevel(Application.loadedLevel);
+                Application.LoadLevel(Application.loadedLevel);
 
             }
             
