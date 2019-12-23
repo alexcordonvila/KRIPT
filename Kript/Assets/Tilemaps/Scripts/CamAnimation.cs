@@ -30,7 +30,6 @@ public class CamAnimation : MonoBehaviour
         {
             
             bgColor = new Color(Random.value, Random.value, Random.value);
-            Debug.Log("bgColor: " + bgColor);
             float t = 0f;
             Color currentColor = Camera.main.backgroundColor;
             while (t < 1.0)

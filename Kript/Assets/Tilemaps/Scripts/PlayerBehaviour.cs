@@ -76,14 +76,14 @@ public class PlayerBehaviour : MonoBehaviour
         x = Input.GetAxis("Horizontal");
         y = Input.GetAxis("Vertical");
         dir = new Vector2(x,y);
-        AirTimeCountDown();
+       // AirTimeCountDown();
         CharacterRayCast();
         Restart();
         if (Input.GetButtonDown("Jump"))
         {
             JumpEvent = true;
         }
-            if (rb.velocity.y == 0) { 
+        if (rb.velocity.y == 0) { 
         }
         if (Input.GetButton("Dash"))
         {
@@ -106,7 +106,7 @@ public class PlayerBehaviour : MonoBehaviour
 
         if (rb.velocity.y < -13)
         {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
         }
     }
 
@@ -115,9 +115,9 @@ public class PlayerBehaviour : MonoBehaviour
         if (col.gameObject.tag == "Platforms")
         {
             GameObject cam = GameObject.Find("Main Camera");
-            iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
-            isGrounded = true;
-           // isCollisionGrounded = true;
+           // iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
+           // isGrounded = true;
+            isCollisionGrounded = true;
             //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
         if (col.gameObject.tag == "MovingPlatforms")
@@ -131,7 +131,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (col.gameObject.name == "Door")
         {
             GameObject cam = GameObject.Find("Main Camera");
-            Application.LoadLevel(Application.loadedLevel);
+          //  Application.LoadLevel(Application.loadedLevel);
          //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
@@ -140,14 +140,6 @@ public class PlayerBehaviour : MonoBehaviour
         if (col.gameObject.tag == "MovingPlatforms")
         {
             this.transform.parent = null;
-        }
-        if (col.gameObject.name == "Platforms_Tilemap")
-        {
-            //GameObject cam = GameObject.Find("Main Camera");
-            //iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
-            isGrounded = false;
-        //    isCollisionGrounded = false;
-            //   SoundManager.PlaySound(SoundManager.Sound.playerLand);
         }
     }
     private void Move(Vector2 dir)
@@ -159,7 +151,7 @@ public class PlayerBehaviour : MonoBehaviour
          
         if (!isGrounded)
         {
-        //    move = new Vector3(x * speed / onAirMovementLimit, rb.velocity.y, 0f);
+           // move = new Vector3(x * speed / onAirMovementLimit, rb.velocity.y, 0f);
         }
         rb.velocity = move;
     }
@@ -230,7 +222,7 @@ public class PlayerBehaviour : MonoBehaviour
         if (hit_wall_L.collider != null) { wall_L = true; } else { wall_L= false; }
         if (hit_down.collider != null || hit_downR.collider != null || hit_downL.collider != null) { isGrounded = true; } else { isGrounded = false; }
 
-        Debug.Log(hit_downL.collider);
+        Debug.Log(hit_wall_L.collider);
         Debug.DrawRay(transform.position , Vector2.down * rayCheckDistance_two, Color.red);
         Debug.DrawRay(transform.position - new Vector3(foot, 0, 0), Vector2.down * rayCheckDistance_two, Color.red);
         Debug.DrawRay(transform.position + new Vector3(foot, 0, 0), Vector2.down * rayCheckDistance_two, Color.red);
@@ -246,10 +238,8 @@ public class PlayerBehaviour : MonoBehaviour
     }
     void AirTimeCountDown()
     {
-        if (!isGrounded /*&& !isCollisionGrounded*/)
+        if (!isGrounded)
         {
-            //if (JumpEvent)
-            //{
                 if (miliseconds <= 0)
                 {
                     if (seconds <= 0)
@@ -260,31 +250,24 @@ public class PlayerBehaviour : MonoBehaviour
                     else if (seconds >= 0)
                     {
                         seconds--;
-                   
                     }
 
                     miliseconds = 100;
                 }
-
                 miliseconds -= Time.deltaTime * 100;
-
             if (seconds<=0 && miliseconds<=0)
             {
-                Application.LoadLevel(Application.loadedLevel);
+                //Application.LoadLevel(Application.loadedLevel);
 
             }
             
             TextMeshProUGUI textmeshPro = this.gameObject.transform.GetChild(0).transform.GetChild(0).GetComponent<TextMeshProUGUI>();
             //textmeshPro.SetText(seconds.ToString()+""+ miliseconds.ToString());
             textmeshPro.SetText("{0}."+ miliseconds.ToString("F0"), seconds );
-            Debug.Log(this.gameObject.transform.GetChild(0).transform.GetChild(0).name);
             // timer.text = string.Format("{0}:{1}:{2}", minutes, seconds, (int)miliseconds);
             
         }
-            if (FallEvent)
-            {
-
-            }
+          
     }
     void AirTimeCounter()
     {
