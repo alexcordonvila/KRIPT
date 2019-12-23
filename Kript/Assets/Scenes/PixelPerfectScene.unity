@@ -1495,8 +1495,8 @@ MonoBehaviour:
   wallSide: 0
   collisionRadius: 0.1
   bottomOffset: {x: 0, y: 0.06}
-  rightOffset: {x: 0.45, y: 0.3}
-  leftOffset: {x: -0.45, y: 0.3}
+  rightOffset: {x: 0.45, y: 0.16}
+  leftOffset: {x: -0.45, y: 0.16}
 --- !u!1 &1431041499
 GameObject:
   m_ObjectHideFlags: 0
@@ -1873,7 +1873,7 @@ GameObject:
   - component: {fileID: 1521131568}
   m_Layer: 8
   m_Name: 128x64
-  m_TagString: Untagged
+  m_TagString: Platforms
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

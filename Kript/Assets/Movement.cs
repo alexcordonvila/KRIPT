@@ -78,15 +78,38 @@ public class Movement : MonoBehaviour
             }
         }
 
-        if (coll.onWall && !coll.onGround && !wallJumped)
+        if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
         {
-            canMove = false;
+            if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
+            {
+                this.x = 0;
+                Debug.Log("En aire y pared dcha");
+            }
+            else
+            {
+                this.x = 0;
+                Debug.Log("En aire y pared izda");
+            }
+            if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
+            {
+                this.x = Input.GetAxis("Horizontal");
+            }
+            if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
+            {
+                this.x = Input.GetAxis("Horizontal");
+            }
+
+        }
+        else if(coll.onWall && !coll.onGround) //No pared, en el aire y sin pulsar espacio y si movimiento
+        {  
+           // canMove = true;
         }
         if (!coll.onGround && groundTouch) //si estoy en el aire
         {
             groundTouch = false;
+            
         }
-        if (groundTouch && coll.onWall)
+        if (groundTouch && coll.onWall) //si estoy en el suelo y toco pared
         {
             if (side != coll.wallSide && Input.GetAxis("Horizontal")>0)
             {
