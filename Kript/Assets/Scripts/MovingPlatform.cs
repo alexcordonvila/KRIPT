@@ -5,7 +5,7 @@ using UnityEngine;
 public class MovingPlatform : MonoBehaviour
 {
     private Vector2 startPosition;
-    private float speed;
+    public float speed;
     public bool direction;
 
     private int dir;
@@ -14,7 +14,7 @@ public class MovingPlatform : MonoBehaviour
     {
         
         startPosition = transform.position;
-        speed = 2f;
+        
         int random = Random.Range(0, 10);
         if (random < 2 || random >8)
         {
