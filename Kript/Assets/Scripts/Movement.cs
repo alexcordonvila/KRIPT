@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour
 {
     [HideInInspector]
     private Collision coll;
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     [Space]
     [Header("Stats")]
@@ -16,7 +16,7 @@ public class Movement : MonoBehaviour
     public float speed = 10;
     [Range(1, 10)]
     [Tooltip("Upside jump force")]
-    public float jumpForce = 6;
+    public float jumpForce = 7.5f;
     public float slideSpeed = 5;
     public float wallJumpLerp = 10;
     public float dashSpeed = 20;
@@ -27,7 +27,7 @@ public class Movement : MonoBehaviour
     [Range(1, 5)]
     [Tooltip("Fall force when player release jump button")]
     public float lowJumpMultiplayer = 2f;
-
+    public int numMovements;
     [Space]
     [Header("Booleans")]
     public bool canMove;
@@ -47,9 +47,9 @@ public class Movement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
+        numMovements = 0;
+        hasDashed = false;
     }
-
-    // Update is called once per frame
     void Update()
     {
         this.x = Input.GetAxis("Horizontal");
@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
             wallJumped = false;
             canMove = true;
             groundTouch = true;
-            jumpForce = 6;
+            jumpForce = 7.5f;
         }
 
         if (Input.GetButtonDown("Jump"))
@@ -77,7 +77,15 @@ public class Movement : MonoBehaviour
                 WallJump();
             }
         }
-
+        if (coll.onWall)
+        {
+            lowJumpMultiplayer = 1.5f;
+            fallMultiplayer = 1f;
+        }else
+        {
+            lowJumpMultiplayer = 2f;
+            fallMultiplayer = 2.5f;
+        }
         if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
         {
             if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
@@ -109,6 +117,12 @@ public class Movement : MonoBehaviour
             groundTouch = false;
             
         }
+        if (coll.onGround && !groundTouch) //si estoy colisionando con el suelo pero groundTouch aun no esta a false
+        {
+           GroundTouch();
+           groundTouch = true; 
+
+        }
         if (groundTouch && coll.onWall) //si estoy en el suelo y toco pared
         {
             if (side != coll.wallSide && Input.GetAxis("Horizontal")>0)
@@ -129,14 +143,18 @@ public class Movement : MonoBehaviour
                 this.x = Input.GetAxis("Horizontal");
             }      
         }
-
+        if (Input.GetButtonDown("Fire1") /*&& !hasDashed*/)
+        {
+            if (xRaw != 0 || yRaw != 0)
+                Dash(xRaw, yRaw);
+        }
     }
     void FixedUpdate()
     {
         Vector2 dir = new Vector2(x, y);
         Walk(dir);
         Jump(Vector2.up, false);
-        SloWMotionMovement();
+       // SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -160,7 +178,15 @@ public class Movement : MonoBehaviour
             this.transform.parent = null;
         }
     }
+    private void GroundTouch()
+    {
+        hasDashed = false;
+        isDashing = false;
 
+        //Activamos particulas del jump
+
+        
+    }
     private void Walk(Vector2 dir)
     {
 
@@ -179,7 +205,7 @@ public class Movement : MonoBehaviour
         }
         else
         {
-           // move = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
+            //move = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
         }
         rb.velocity = move;
     }
@@ -190,6 +216,7 @@ public class Movement : MonoBehaviour
         {
             if (groundTouch || wallJumped)
             {
+                numMovements++;
                 rb.AddForce(dir* jumpForce, ForceMode2D.Impulse);
             }
             JumpEvent = false;
@@ -211,7 +238,8 @@ public class Movement : MonoBehaviour
     IEnumerator DisableMovement(float time)
     {
             canMove = false;
-            Debug.Log("SpaceReleased");
+        rb.gravityScale = 0;
+        Debug.Log("SpaceReleased");
             yield return new WaitForSeconds(time);
             canMove = true;    
     }
@@ -224,12 +252,44 @@ public class Movement : MonoBehaviour
 
         
        JumpEvent = true;
-        Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
-        Jump((Vector2.up / 1.5f + wallDir / 2f), true);
-       // Jump((Vector2.up * 1.5f + wallDir.normalized), true);
-        
+       Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
+        rb.gravityScale = 0;
+        Jump((Vector2.up / 1.5f + wallDir / 1.1f), true);        
     }
+    private void Dash(float x, float y)
+    {
+        canMove = false;
+        Debug.Log("DasH!");
+        hasDashed = true;
+        rb.velocity = Vector2.zero;
+        Vector2 dir = new Vector2(x, y);
+        Debug.DrawRay(transform.position, dir * 7, Color.green);
+        rb.gravityScale = 0;  
+        rb.velocity += dir.normalized * dashSpeed;
+        StartCoroutine(DashWait());
+    }
+    IEnumerator DashWait()
+    {
+        
+        StartCoroutine(GroundDash());  
+        rb.gravityScale = 0;
+      
+        wallJumped = true;
+        isDashing = true;
 
+        yield return new WaitForSeconds(.3f);
+        canMove = true;
+        rb.gravityScale = 3;
+        wallJumped = false;
+        isDashing = false;
+    }
+    IEnumerator GroundDash()
+    {
+        rb.gravityScale = 0;
+        yield return new WaitForSeconds(.15f);
+        if (coll.onGround)
+            hasDashed = false;
+    }
     private void SloWMotionMovement()
     {
         if (Input.GetAxis("Fire1") != 0)

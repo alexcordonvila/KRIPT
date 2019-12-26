@@ -15,7 +15,7 @@ public class LimitedMovement : MonoBehaviour
     void Start()
     {
         MAXMOVEMENTS = 5;
-        numMovements = player.GetComponent<PlayerBehaviour>().numMovements;
+        numMovements = player.GetComponent<Movement>().numMovements;
         
         //for (int i = 0; i < MAXMOVEMENTS; i++)
         //{
@@ -29,7 +29,7 @@ public class LimitedMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        numMovements = player.GetComponent<PlayerBehaviour>().numMovements;
+        numMovements = player.GetComponent<Movement>().numMovements;
        // Debug.Log(numMovements + " , "+ MAXMOVEMENTS);
         if (Input.GetButtonDown("Jump") && numMovements<MAXMOVEMENTS)
         {
