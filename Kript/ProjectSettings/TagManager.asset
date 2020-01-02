@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platforms
   - MovingPlatforms
+  - DeadZone
   layers:
   - Default
   - TransparentFX
@@ -19,7 +20,7 @@ TagManager:
   - PostProcessing
   - Player
   - Traps
-  - 
+  - DeadZone
   - 
   - 
   - 

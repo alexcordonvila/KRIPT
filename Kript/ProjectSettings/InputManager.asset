@@ -310,29 +310,13 @@ InputManager:
     axis: 0
     joyNum: 0
   - serializedVersion: 3
-    m_Name: Dash
-    descriptiveName: Dash for the Xbox Controller
+    m_Name: Fire1
+    descriptiveName: Dash Xbox Controller
     descriptiveNegativeName: 
     negativeButton: 
     positiveButton: joystick button 2
     altNegativeButton: 
-    altPositiveButton: 
-    gravity: 1000
-    dead: 0.001
-    sensitivity: 1000
-    snap: 0
-    invert: 0
-    type: 0
-    axis: 0
-    joyNum: 0
-  - serializedVersion: 3
-    m_Name: Das
-    descriptiveName: Dash for the Xbox Controller
-    descriptiveNegativeName: 
-    negativeButton: 
-    positiveButton: joystick button 2
-    altNegativeButton: 
-    altPositiveButton: space
+    altPositiveButton: r
     gravity: 1000
     dead: 0.001
     sensitivity: 1000

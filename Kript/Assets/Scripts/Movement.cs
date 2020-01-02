@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -39,17 +40,23 @@ public class Movement : MonoBehaviour
     public bool groundTouch;
     public bool isFalling;
     public bool JumpEvent;
+    public bool DashEvent;
 
     [Space]
     private bool hasDashed;
     private int side = 1;
+    private Vector2 SpawnPoint;
 
     void Start()
     {
+        SpawnPoint = new Vector2(this.transform.position.x, this.transform.position.y);
+        lowJumpMultiplayer = 2f;
+        fallMultiplayer = 2.5f;
         rb = GetComponent<Rigidbody2D>();
         coll = GetComponent<Collision>();
         numMovements = 0;
         hasDashed = false;
+        rb.drag = 0.3f;
     }
     void Update()
     {
@@ -64,9 +71,12 @@ public class Movement : MonoBehaviour
             wallJumped = false;
             canMove = true;
             groundTouch = true;
-            //jumpForce = 12f;
+    
         }
-
+        if (coll.onDead)
+        {
+            Dead();
+        }
         if (Input.GetButtonDown("Jump"))
         {
             if (coll.onGround)
@@ -74,38 +84,39 @@ public class Movement : MonoBehaviour
                 iTween.Stop(this.gameObject);
                 canMove = true;
                 JumpEvent = true;
+                DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
             {         
-                WallJump();
+                //WallJump();
             }
         }
-        if (coll.onWall)
+        if (coll.onCeiling)
         {
             iTween.Stop(this.gameObject);
-            lowJumpMultiplayer = 1.5f;
-            fallMultiplayer = 1f;
+        }
+        if (coll.onWall && yRaw!=1)
+        {
+           // iTween.Stop(this.gameObject);
+
         }
 
-        if(coll.onWall && isDashing) iTween.Stop(this.gameObject);
+        if(coll.onWall && isDashing && yRaw != 1) iTween.Stop(this.gameObject);
         if (isDashing)
         {
-            lowJumpMultiplayer = 0f;
-            fallMultiplayer = 0f;
-        }else if (!isDashing && !coll.onGround)
+         
+        }
+        else if (!isDashing && !coll.onGround)
         {
-            lowJumpMultiplayer = 4.5f;
-            fallMultiplayer = 3.5f;
+
         }
         else
         {
-            lowJumpMultiplayer = 6f;
-            fallMultiplayer = 4.5f;
+
         }
         if ((coll.onGround || !isDashing) && coll.onWall) 
         {  
-            lowJumpMultiplayer = 6f;
-            fallMultiplayer = 4.5f;     
+  
         }
         if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
         {
@@ -131,7 +142,7 @@ public class Movement : MonoBehaviour
         }
         else if(coll.onWall && !coll.onGround) //No pared, en el aire y sin pulsar espacio y si movimiento
         {  
-           // canMove = true;
+            canMove = true;
         }
         if (!coll.onGround && groundTouch) //si estoy en el aire
         {
@@ -146,11 +157,12 @@ public class Movement : MonoBehaviour
         }
         if (groundTouch && coll.onWall) //si estoy en el suelo y toco pared
         {
-            if (side != coll.wallSide && Input.GetAxis("Horizontal")>0)
+            if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
             {
                 this.x = 0;
                 Debug.Log("Paret de la dreta");
-            }else
+            }
+            else
             {
                 this.x = 0;
                 Debug.Log("Paret de l'esquerra");
@@ -162,13 +174,21 @@ public class Movement : MonoBehaviour
             if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
             {
                 this.x = Input.GetAxis("Horizontal");
-            }      
+            }
         }
-        if (Input.GetButtonDown("Fire1") /*&& !hasDashed*/)
-        {
-            if (xRaw != 0 || yRaw != 0)
-                Dash(xRaw, yRaw);
-            
+        if (Input.GetButtonDown("Fire1") && !hasDashed)
+        {         
+            if ((xRaw != 0 || yRaw != 0) && DashEvent)
+            {
+                if (!coll.onGround)
+                {
+                    Dash(xRaw, yRaw);
+                }
+                else if (coll.onGround)
+                {
+                    Dash(xRaw, 0);
+                }
+            } 
         }
     }
     void FixedUpdate()
@@ -222,54 +242,48 @@ public class Movement : MonoBehaviour
         Vector2 move;
         move = new Vector2(dir.x * speed, rb.velocity.y );
 
-        if (!canMove)
-            return;
-
-        if (wallGrab)
-           return;
+        if (!canMove) { 
+           // return;
+        }else { 
+        //if (wallGrab)
+        //   return;
 
         if (!wallJumped && !isDashing)
         {
-            move = new Vector2(dir.x * speed, rb.velocity.y);
+          //  move = new Vector2(dir.x * speed, rb.velocity.y);
         }
         else
         {
-            move = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
+           // move = Vector2.Lerp(rb.velocity, (new Vector2(dir.x * speed, rb.velocity.y)), wallJumpLerp * Time.deltaTime);
         }
         if (isDashing || hasDashed)
         {
-            move = new Vector2(dir.x * speed, dir.y * speed);
+            //move = new Vector2(dir.x * speed, dir.y * speed);
         }
-       
+        }
         rb.velocity = move;
     }
     private void Jump(Vector2 dir, bool wall)
     {
-        
         if (JumpEvent)
         {
             if (groundTouch || wallJumped)
             {
                 numMovements++;
-                rb.AddForce(dir* jumpForce, ForceMode2D.Impulse);
+                rb.AddForce(dir * jumpForce, ForceMode2D.Impulse);
             }
+            //Devolvemos la variable de control de salto a falso
             JumpEvent = false;
         }
-        if (rb.velocity.y < 0 && !isDashing)
-        {
-            isFalling = true;
-            rb.gravityScale = fallMultiplayer;
-        }
-        else if (rb.velocity.y > 0  && !Input.GetButton("Jump") && !isDashing)
-        {
-            rb.gravityScale = lowJumpMultiplayer;
-        }else if (isDashing)
-        {
-            rb.gravityScale = fallMultiplayer;
-        }
-        else{
-            rb.gravityScale = fallMultiplayer;
-        }
+            if (rb.velocity.y < 0 )
+            {
+                isFalling = true;
+                rb.gravityScale = fallMultiplayer;
+            }
+            else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
+            {
+                rb.gravityScale += lowJumpMultiplayer;
+            }   
     }
 
     IEnumerator DisableMovement(float time)
@@ -282,16 +296,16 @@ public class Movement : MonoBehaviour
 
     private void WallJump()
     {
-        wallJumped = true;
-        StopCoroutine(DisableMovement(0));
-        StartCoroutine(DisableMovement(3f));
+       wallJumped = true;
+       StopCoroutine(DisableMovement(0));
+       StartCoroutine(DisableMovement(3f));
        JumpEvent = true;
        Vector2 wallDir = coll.onRightWall ? Vector2.left : Vector2.right;
-        Jump((Vector2.up / 1.5f + wallDir / 2f), true);        
+       Jump((Vector2.up / 1.5f + wallDir / 2f), true);        
     }
     private void Dash(float x, float y)
     {
-        
+        DashEvent = false;
         canMove = false;
         Debug.Log("DasH!");
         hasDashed = true;
@@ -305,11 +319,10 @@ public class Movement : MonoBehaviour
         float endPosX = posX + (dashRadius * dir.x) ;
         float endPosY = posY + (dashRadius * dir.y);
         rb.velocity = dir.normalized * dashSpeed;
+        
         iTween.MoveTo(this.gameObject, iTween.Hash("x", endPosX, "y", endPosY,
                    "islocal", true, "easetype", iTween.EaseType.easeOutCubic,
                   "time", 0.15f));
-       
-
         StartCoroutine(DashWait());
     }
     IEnumerator DashWait()
@@ -318,7 +331,6 @@ public class Movement : MonoBehaviour
         wallJumped = true;
         isDashing = true;
         isDashing = true;
-
         yield return new WaitForSeconds(0.1f);
         canMove = false;
         rb.gravityScale = 3;
@@ -331,7 +343,7 @@ public class Movement : MonoBehaviour
         yield return new WaitForSeconds(.15f);
         if (coll.onGround)
             hasDashed = false;
-        isDashing = false;
+            isDashing = false;
     }
     private void SloWMotionMovement()
     {
@@ -346,11 +358,66 @@ public class Movement : MonoBehaviour
             Time.fixedDeltaTime = 0.02F;
         }
     }
+    private void Dead()
+    {
+        //Before die we want to play an animation
+        canMove = false;
+        float posX = this.transform.position.x;
+        float posY = this.transform.position.y;
+        float endPosX = posX + (dashRadius * 0);
+        float endPosY = posY + (dashRadius * 1);
+        iTween.MoveTo(this.gameObject, iTween.Hash("y", endPosY,
+                    "islocal", true, "easetype", iTween.EaseType.linear,
+                   "time", 0.1f, "oncomplete", "DeadRestart", "oncompletetarget",this.gameObject));
+        rb.drag = 100;
+        //PlayDeadAnimation
+        //PlayFadeScreenAnimation
+
+
+
+    }
+    //This is for the player input restart
     private void Restart()
     {
         if (Input.GetButtonDown("Restart"))
         {
-            Application.LoadLevel(Application.loadedLevel);
+            //Application.LoadLevel(Application.loadedLevel);
+            DeadRestart();
+        }
+    }
+    private void DeadRestart()
+    {
+        
+        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
+        StartCoroutine(LoadYourAsyncScene());
+
+    }
+    IEnumerator LoadYourAsyncScene()
+    {
+        yield return new WaitForSeconds(0.3f);
+        restartLevel();
+    }
+    public void restartLevel()
+    {
+        //Respawn the player
+        this.transform.position = SpawnPoint;
+        canMove = true;
+        //Reset the usual gravity game
+        lowJumpMultiplayer = 2f;
+        fallMultiplayer = 2.5f;
+        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collision>();
+        numMovements = 0;
+        hasDashed = false;
+        rb.drag = 0.3f;
+
+    }
+    //This function recieve messages to call methods after animations
+    public void AlertObservers(string message)
+    {
+        if (message.Equals("DeadAnimationEnd"))
+        {
+            
         }
     }
 }

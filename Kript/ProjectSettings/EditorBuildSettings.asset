@@ -6,9 +6,15 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/Scenes/SampleScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
-    path: Assets/Scenes/PixelPerfectScene.unity
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 0
+    path: Assets/Scenes/scene.unity
     guid: 7d2205062de40fa45ba7b7041f0c8f0d
+  - enabled: 1
+    path: Assets/Scenes/scene 1.unity
+    guid: 54472ba2e32bf664092f9327199200ee
+  - enabled: 1
+    path: Assets/Scenes/Transition.unity
+    guid: d05b0da267c45b84ea0b2742b5bd1533
   m_configObjects: {}
