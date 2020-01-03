@@ -1,0 +1,399 @@
+fileFormatVersion: 2
+guid: 85eef0c7b9116964a8dfdeca455a5b0e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 8588081205695200139
+    second: TrueTileSet_0
+  - first:
+      213: -8196248695314379727
+    second: TrueTileSet_1
+  - first:
+      213: -771965742680802399
+    second: TrueTileSet_2
+  - first:
+      213: 4350660052102313649
+    second: TrueTileSet_3
+  - first:
+      213: -6377352217773925916
+    second: TrueTileSet_4
+  - first:
+      213: -6643752204713463560
+    second: TrueTileSet_5
+  - first:
+      213: 1123076602743210118
+    second: TrueTileSet_6
+  - first:
+      213: -6538107116633546196
+    second: TrueTileSet_7
+  - first:
+      213: 4204980358063519072
+    second: TrueTileSet_8
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 200
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: TrueTileSet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: -82, y: -100}
+        - {x: -82, y: 82}
+        - {x: 100, y: 82}
+        - {x: 100, y: 100}
+      physicsShape:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: -82.89279, y: -100}
+        - {x: -83, y: 82}
+        - {x: 100, y: 82}
+        - {x: 100, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5de9dd1c20c9e7445be83abfb4ae53cf
+      internalID: 8588081205695200139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_1
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: 82}
+        - {x: 100, y: 82}
+        - {x: 100, y: 100}
+      physicsShape:
+      - - {x: -100, y: 100}
+        - {x: -100, y: 82}
+        - {x: 100, y: 82}
+        - {x: 100, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5a50ec7427271a543ad4ef0c64e75910
+      internalID: -8196248695314379727
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_2
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 400
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: 82}
+        - {x: 82, y: 82}
+        - {x: 82, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      physicsShape:
+      - - {x: -100, y: 100}
+        - {x: -100, y: 82}
+        - {x: 81, y: 81}
+        - {x: 81, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 120428683df40e54ea5d01154d4dfe8d
+      internalID: -771965742680802399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_3
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: -82, y: -100}
+        - {x: -82, y: 100}
+      physicsShape:
+      - - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: -83, y: -100}
+        - {x: -82, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0184efa04c1cf8f49b20681f44bc11a7
+      internalID: 4350660052102313649
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_4
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f3f7572feaeac6f47825189bc77f7966
+      internalID: -6377352217773925916
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_5
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 200
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 82, y: 100}
+        - {x: 82, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      physicsShape:
+      - - {x: 81, y: 100}
+        - {x: 82, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: e0fba5c4a7ba62e4f8df73a1fe2c84d5
+      internalID: -6643752204713463560
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_6
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -82, y: 100}
+        - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: -82}
+        - {x: -82, y: -82}
+      physicsShape:
+      - - {x: -82, y: 100}
+        - {x: -100, y: 100}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: -82}
+        - {x: -84, y: -81}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d6efc79e9f8d8e44a88708eef30ad4a
+      internalID: 1123076602743210118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_7
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -100, y: -82}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: -82}
+      physicsShape:
+      - - {x: -100, y: -82}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 99, y: -83}
+      tessellationDetail: 0
+      bones: []
+      spriteID: f771987eb157d2647960cc6c4b4da487
+      internalID: -6538107116633546196
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TrueTileSet_8
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 0
+        width: 200
+        height: 200
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 82, y: 100}
+        - {x: 82, y: -82}
+        - {x: -100, y: -81}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      physicsShape:
+      - - {x: 81, y: 100}
+        - {x: 82, y: -81}
+        - {x: -100, y: -81}
+        - {x: -100, y: -100}
+        - {x: 100, y: -100}
+        - {x: 100, y: 100}
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9475750b1ef62f44b9c3a0117bc53a5f
+      internalID: 4204980358063519072
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
