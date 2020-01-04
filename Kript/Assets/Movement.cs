@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour
     private bool hasDashed;
     private int side = 1;
     private Vector2 SpawnPoint;
+    private Animator anim;
 
     void Start()
     {
@@ -57,6 +58,7 @@ public class Movement : MonoBehaviour
         numMovements = 0;
         hasDashed = false;
         rb.drag = 0.3f;
+        anim = GetComponent<Animator>();
     }
     void Update()
     {
@@ -198,11 +200,15 @@ public class Movement : MonoBehaviour
         Walk(dir);
         if (xRaw < 0) { 
         this.transform.localScale = new Vector3(-1, 1, 1);
+        anim.SetBool("Run", xRaw < 0);
         }
         else if(xRaw>0)
         {
+            //anim.SetBool("Run", xRaw > 0);
             this.transform.localScale = new Vector3(1, 1, 1);
         }
+          anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
+        
         Jump(Vector2.up, false);
        // SloWMotionMovement();
     }
