@@ -62,7 +62,7 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        
+        anim.SetBool("Falling", isFalling);
         Restart();
         this.x = Input.GetAxis("Horizontal");
         this.y = Input.GetAxis("Vertical");
@@ -74,7 +74,8 @@ public class Movement : MonoBehaviour
             wallJumped = false;
             canMove = true;
             groundTouch = true;
-    
+            //anim.SetBool("Jump", false);
+
         }
         if (coll.onDead)
         {
@@ -87,6 +88,7 @@ public class Movement : MonoBehaviour
                 iTween.Stop(this.gameObject);
                 canMove = true;
                 JumpEvent = true;
+                anim.SetBool("Jump", true);
                 DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
@@ -210,7 +212,7 @@ public class Movement : MonoBehaviour
           anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
         
         Jump(Vector2.up, false);
-       // SloWMotionMovement();
+        SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -285,13 +287,16 @@ public class Movement : MonoBehaviour
             {
                 numMovements++;
                 rb.AddForce(dir * jumpForce, ForceMode2D.Impulse);
+                
             }
             //Devolvemos la variable de control de salto a falso
             JumpEvent = false;
+            
         }
             if (rb.velocity.y < 0 )
             {
                 isFalling = true;
+                anim.SetBool("Falling", isFalling);
                 rb.gravityScale = fallMultiplayer;
             }
             else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
