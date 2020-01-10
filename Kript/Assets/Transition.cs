@@ -22,10 +22,11 @@ public class Transition : MonoBehaviour
 
     public void startTransition()
     {
+        ResetTrans();
        GetComponent<SpriteRenderer>().color = new Color(0, 0, 0, 1);
 
 
-        iTween.MoveTo(this.gameObject, iTween.Hash("x", 35,
+        iTween.MoveTo(this.gameObject, iTween.Hash("x", 50,
             "islocal", true, "easetype", iTween.EaseType.linear,
            "time", speed, "oncomplete", "ResetTrans"));
     }

@@ -3559,7 +3559,7 @@ SpriteRenderer:
   m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3577,8 +3577,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1520536741}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -19.27, y: 0, z: 0}
-  m_LocalScale: {x: 267, y: 267, z: 267}
+  m_LocalPosition: {x: -0.9, y: 0, z: 0}
+  m_LocalScale: {x: 300, y: 300, z: 0}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -4401,7 +4401,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pauseMenu: {fileID: 2004625692}
-  ispaused: 0
   easyType: 5
   ActionsGameobject:
   - {fileID: 271954888}
@@ -4432,6 +4431,7 @@ MonoBehaviour:
   NumberofActions: 0
   numberOfActionsLeft: 0
   DebugActionKey: 287
+  ispaused: 0
 --- !u!4 &1962944634
 Transform:
   m_ObjectHideFlags: 0

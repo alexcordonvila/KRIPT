@@ -31,7 +31,7 @@ public class SceneLoader : MonoBehaviour
     }
     public void UpdateSceneState()
     {
-        tr.startTransition();
+        
         _sceneCountInBuildSettings = SceneManager.sceneCountInBuildSettings;
 
         _managerScene = 0;
@@ -46,9 +46,17 @@ public class SceneLoader : MonoBehaviour
     public void NextScene()
     {
         //if next scene is Not loaded, load next scene
-        if (!SceneManager.GetSceneByBuildIndex(nextScene).isLoaded) SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
+        if (!SceneManager.GetSceneByBuildIndex(nextScene).isLoaded)
+        {
+            tr.startTransition();
+            SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
+        }
 
-        if (SceneManager.GetSceneByBuildIndex(backScene).isLoaded) SceneManager.UnloadSceneAsync(backScene);
+        if (SceneManager.GetSceneByBuildIndex(backScene).isLoaded)
+        {
+            tr.startTransition();
+            SceneManager.UnloadSceneAsync(backScene);
+        }
 
  
 

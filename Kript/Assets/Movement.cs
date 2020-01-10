@@ -62,155 +62,161 @@ public class Movement : MonoBehaviour
     }
     void Update()
     {
-        
-        Restart();
-        this.x = Input.GetAxis("Horizontal");
-        this.y = Input.GetAxis("Vertical");
-        this.xRaw = Input.GetAxisRaw("Horizontal");
-        this.yRaw = Input.GetAxisRaw("Vertical");
-        //floor resets variables:
-        if (coll.onGround)
+        if (GetComponent<Linker>().ispaused)
         {
-            wallJumped = false;
-            canMove = true;
-            groundTouch = true;
-    
-        }
-        if (coll.onDead)
-        {
-            Dead();
-        }
-        if (Input.GetButtonDown("Jump"))
-        {
+            Restart();
+            this.x = Input.GetAxis("Horizontal");
+            this.y = Input.GetAxis("Vertical");
+            this.xRaw = Input.GetAxisRaw("Horizontal");
+            this.yRaw = Input.GetAxisRaw("Vertical");
+            //floor resets variables:
             if (coll.onGround)
             {
-                iTween.Stop(this.gameObject);
+                wallJumped = false;
                 canMove = true;
-                JumpEvent = true;
-                DashEvent = true;
+                groundTouch = true;
+
             }
-            if (coll.onWall && !coll.onGround && !wallJumped)
-            {         
-                //WallJump();
-            }
-        }
-        if (coll.onCeiling)
-        {
-            iTween.Stop(this.gameObject);
-        }
-        if (coll.onWall && yRaw!=1)
-        {
-           // iTween.Stop(this.gameObject);
-
-        }
-
-        if(coll.onWall && isDashing && yRaw != 1) iTween.Stop(this.gameObject);
-        if (isDashing)
-        {
-         
-        }
-        else if (!isDashing && !coll.onGround)
-        {
-
-        }
-        else
-        {
-
-        }
-        if ((coll.onGround || !isDashing) && coll.onWall) 
-        {  
-  
-        }
-        if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
-        {
-            if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
+            if (coll.onDead)
             {
-                this.x = 0;
-                Debug.Log("En aire y pared dcha");
+                Dead();
+            }
+            if (Input.GetButtonDown("Jump"))
+            {
+                if (coll.onGround)
+                {
+                    iTween.Stop(this.gameObject);
+                    canMove = true;
+                    JumpEvent = true;
+                    DashEvent = true;
+                }
+                if (coll.onWall && !coll.onGround && !wallJumped)
+                {
+                    //WallJump();
+                }
+            }
+            if (coll.onCeiling)
+            {
+                iTween.Stop(this.gameObject);
+            }
+            if (coll.onWall && yRaw != 1)
+            {
+                // iTween.Stop(this.gameObject);
+
+            }
+
+            if (coll.onWall && isDashing && yRaw != 1) iTween.Stop(this.gameObject);
+            if (isDashing)
+            {
+
+            }
+            else if (!isDashing && !coll.onGround)
+            {
+
             }
             else
             {
-                this.x = 0;
-                Debug.Log("En aire y pared izda");
-            }
-            if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
-            {
-                this.x = Input.GetAxis("Horizontal");
-            }
-            if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
-            {
-                this.x = Input.GetAxis("Horizontal");
-            }
 
-        }
-        else if(coll.onWall && !coll.onGround) //No pared, en el aire y sin pulsar espacio y si movimiento
-        {  
-            canMove = true;
-        }
-        if (!coll.onGround && groundTouch) //si estoy en el aire
-        {
-            groundTouch = false;
-            
-        }
-        if (coll.onGround && !groundTouch) //si estoy colisionando con el suelo pero groundTouch aun no esta a false
-        {
-           GroundTouch();
-           groundTouch = true; 
+            }
+            if ((coll.onGround || !isDashing) && coll.onWall)
+            {
 
-        }
-        if (groundTouch && coll.onWall) //si estoy en el suelo y toco pared
-        {
-            if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
-            {
-                this.x = 0;
-                Debug.Log("Paret de la dreta");
             }
-            else
+            if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
             {
-                this.x = 0;
-                Debug.Log("Paret de l'esquerra");
-            }
-            if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
-            {
-                this.x = Input.GetAxis("Horizontal");
-            }
-            if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
-            {
-                this.x = Input.GetAxis("Horizontal");
-            }
-        }
-        if (Input.GetButtonDown("Fire1") && !hasDashed)
-        {         
-            if ((xRaw != 0 || yRaw != 0) && DashEvent)
-            {
-                if (!coll.onGround)
+                if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
                 {
-                    Dash(xRaw, yRaw);
+                    this.x = 0;
+                    Debug.Log("En aire y pared dcha");
                 }
-                else if (coll.onGround)
+                else
                 {
-                    Dash(xRaw, 0);
+                    this.x = 0;
+                    Debug.Log("En aire y pared izda");
                 }
-            } 
+                if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
+                {
+                    this.x = Input.GetAxis("Horizontal");
+                }
+                if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
+                {
+                    this.x = Input.GetAxis("Horizontal");
+                }
+
+            }
+            else if (coll.onWall && !coll.onGround) //No pared, en el aire y sin pulsar espacio y si movimiento
+            {
+                canMove = true;
+            }
+            if (!coll.onGround && groundTouch) //si estoy en el aire
+            {
+                groundTouch = false;
+
+            }
+            if (coll.onGround && !groundTouch) //si estoy colisionando con el suelo pero groundTouch aun no esta a false
+            {
+                GroundTouch();
+                groundTouch = true;
+
+            }
+            if (groundTouch && coll.onWall) //si estoy en el suelo y toco pared
+            {
+                if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
+                {
+                    this.x = 0;
+                    Debug.Log("Paret de la dreta");
+                }
+                else
+                {
+                    this.x = 0;
+                    Debug.Log("Paret de l'esquerra");
+                }
+                if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
+                {
+                    this.x = Input.GetAxis("Horizontal");
+                }
+                if (side == coll.wallSide && Input.GetAxis("Horizontal") >= 0)
+                {
+                    this.x = Input.GetAxis("Horizontal");
+                }
+            }
+            if (Input.GetButtonDown("Fire1") && !hasDashed)
+            {
+                if ((xRaw != 0 || yRaw != 0) && DashEvent)
+                {
+                    if (!coll.onGround)
+                    {
+                        Dash(xRaw, yRaw);
+                    }
+                    else if (coll.onGround)
+                    {
+                        Dash(xRaw, 0);
+                    }
+                }
+            }
         }
     }
     void FixedUpdate()
     {
-        Vector2 dir = new Vector2(x, y);
-        Walk(dir);
-        if (xRaw < 0) { 
-        this.transform.localScale = new Vector3(-1, 1, 1);
-        anim.SetBool("Run", xRaw < 0);
+        if (GetComponent<Linker>().ispaused)
+        { 
+                Vector2 dir = new Vector2(x, y);
+            Walk(dir);
+            if (xRaw < 0)
+            {
+                this.transform.localScale = new Vector3(-1, 1, 1);
+                anim.SetBool("Run", xRaw < 0);
+            }
+            else if (xRaw > 0)
+            {
+                //anim.SetBool("Run", xRaw > 0);
+                this.transform.localScale = new Vector3(1, 1, 1);
+            }
+            anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
+
+            Jump(Vector2.up, false);
+            // SloWMotionMovement();
         }
-        else if(xRaw>0)
-        {
-            //anim.SetBool("Run", xRaw > 0);
-            this.transform.localScale = new Vector3(1, 1, 1);
-        }
-          anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
-        
-        Jump(Vector2.up, false);
-       // SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -401,10 +407,13 @@ public class Movement : MonoBehaviour
     }
     private void DeadRestart()
     {
-        
+
+        GetComponent<Linker>().ResetUI();
+        /*
         SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
         StartCoroutine(LoadYourAsyncScene());
-
+        */
+        restartLevel();
     }
     IEnumerator LoadYourAsyncScene()
     {
@@ -413,6 +422,10 @@ public class Movement : MonoBehaviour
     }
     public void restartLevel()
     {
+
+        GetComponent<Linker>().ResetUI();
+
+
         //Respawn the player
         this.transform.position = SpawnPoint;
         canMove = true;
