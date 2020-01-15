@@ -74,7 +74,7 @@ public class Movement : MonoBehaviour
             wallJumped = false;
             canMove = true;
             groundTouch = true;
-            //anim.SetBool("Jump", false);
+            anim.SetBool("Jump", false);
 
         }
         if (coll.onDead)
@@ -83,12 +83,13 @@ public class Movement : MonoBehaviour
         }
         if (Input.GetButtonDown("Jump"))
         {
+           
             if (coll.onGround)
             {
                 iTween.Stop(this.gameObject);
                 canMove = true;
                 JumpEvent = true;
-                anim.SetBool("Jump", true);
+              //  anim.SetBool("Jump", true);
                 DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
@@ -111,9 +112,9 @@ public class Movement : MonoBehaviour
         {
          
         }
-        else if (!isDashing && !coll.onGround)
+        else if (!isDashing && !coll.onGround && !isFalling)
         {
-
+            anim.SetBool("Jump", true);
         }
         else
         {
@@ -296,7 +297,8 @@ public class Movement : MonoBehaviour
             if (rb.velocity.y < 0 )
             {
                 isFalling = true;
-                anim.SetBool("Falling", isFalling);
+            anim.SetBool("Jump", false);
+            anim.SetBool("Falling", isFalling);
                 rb.gravityScale = fallMultiplayer;
             }
             else if (rb.velocity.y > 0 && !Input.GetButton("Jump"))
