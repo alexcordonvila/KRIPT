@@ -68,7 +68,7 @@ public class Movement : MonoBehaviour
         this.y = Input.GetAxis("Vertical");
         this.xRaw = Input.GetAxisRaw("Horizontal");
         this.yRaw = Input.GetAxisRaw("Vertical");
-        if (x > 0 || x < 0)
+        if ((x > 0 || x < 0) && y == 0)
         {
             anim.speed = x * x;
         }else
@@ -230,7 +230,7 @@ public class Movement : MonoBehaviour
         if (col.gameObject.tag == "Platforms" && isFalling)
         {
             GameObject cam = GameObject.Find("Main Camera");
-            iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
+           // iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isFalling = false;
             iTween.Stop(this.gameObject);
             canMove = true;
@@ -239,7 +239,7 @@ public class Movement : MonoBehaviour
         {
             GameObject cam = GameObject.Find("Main Camera");
             GameObject platform = GameObject.Find("MovingPlatforms");
-            iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
+          //  iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isFalling = false;
             canMove = true;
             this.transform.parent = platform.transform;
@@ -284,7 +284,7 @@ public class Movement : MonoBehaviour
         }
         if (isDashing || hasDashed)
         {
-            move = new Vector2(dir.x * speed, dir.y * speed);
+            //move = new Vector2(dir.x * speed, dir.y * speed);
         }
         }
         rb.velocity = move;
@@ -305,7 +305,7 @@ public class Movement : MonoBehaviour
         }
             if (rb.velocity.y < 0 )
             {
-                isFalling = true;
+                //isFalling = true;
             anim.SetBool("Jump", false);
             anim.SetBool("Falling", isFalling);
                 rb.gravityScale = fallMultiplayer;

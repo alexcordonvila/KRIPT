@@ -32,6 +32,11 @@ public class UIManager : MonoBehaviour
             ActionsGameobject[numberOfActionsLeft - 1].SetActive(false);
             numberOfActionsLeft--;
         }
+
+        if (numberOfActionsLeft < 0)
+        {
+
+        }
     }
 
     public void settinguiActions()

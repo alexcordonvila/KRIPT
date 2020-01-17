@@ -66,7 +66,7 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(startgo, iTween.Hash("x", Screen.width /2, "easeType", easyType, "delay", .6));
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width /2, "easeType", easyType, "delay", .3));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width /2, "easeType", easyType, "delay", .1));
-        iTween.MoveTo(optionsPanel, iTween.Hash("y", -150, "easeType", easyType, "delay", .6));
+        iTween.MoveTo(optionsPanel, iTween.Hash("y", -450, "easeType", easyType, "delay", .6));
 
     }
 }

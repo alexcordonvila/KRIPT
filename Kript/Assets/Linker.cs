@@ -10,7 +10,7 @@ public class Linker : MonoBehaviour
     public bool hasactionleft;
     public int numberofactionlevel;
     public int NumberActionsleft;
-    public TextMeshProUGUI textActions;
+  //  public TextMeshProUGUI textActions;
 
 
     // Start is called before the first frame update
@@ -35,7 +35,7 @@ public class Linker : MonoBehaviour
         else hasactionleft = false;
 
         NumberActionsleft = uiM.numberOfActionsLeft;
-        textActions.text = NumberActionsleft.ToString();
+      //  textActions.text = NumberActionsleft.ToString();
     }
 
     public void ActionDone()
