@@ -68,6 +68,13 @@ public class Movement : MonoBehaviour
         this.y = Input.GetAxis("Vertical");
         this.xRaw = Input.GetAxisRaw("Horizontal");
         this.yRaw = Input.GetAxisRaw("Vertical");
+        if (x > 0 || x < 0)
+        {
+            anim.speed = x * x;
+        }else
+        {
+            anim.speed = 1;
+        }
         //floor resets variables:
         if (coll.onGround)
         {
@@ -89,7 +96,8 @@ public class Movement : MonoBehaviour
                 iTween.Stop(this.gameObject);
                 canMove = true;
                 JumpEvent = true;
-              //  anim.SetBool("Jump", true);
+                GroundTouch();
+                //  anim.SetBool("Jump", true);
                 DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
@@ -100,6 +108,7 @@ public class Movement : MonoBehaviour
         if (coll.onCeiling)
         {
             iTween.Stop(this.gameObject);
+            Restart();
         }
         if (coll.onWall && yRaw!=1)
         {
@@ -248,17 +257,17 @@ public class Movement : MonoBehaviour
     {
         hasDashed = false;
         isDashing = false;
-
+        isFalling = false;
         //Activamos particulas del jump
 
-        
+
     }
     private void Walk(Vector2 dir)
     {
 
         Vector2 move;
         move = new Vector2(dir.x * speed, rb.velocity.y );
-        
+       
         if (!canMove) { 
            // return;
         }else { 
@@ -275,7 +284,7 @@ public class Movement : MonoBehaviour
         }
         if (isDashing || hasDashed)
         {
-            //move = new Vector2(dir.x * speed, dir.y * speed);
+            move = new Vector2(dir.x * speed, dir.y * speed);
         }
         }
         rb.velocity = move;
