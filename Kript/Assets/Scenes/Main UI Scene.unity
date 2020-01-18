@@ -4111,6 +4111,7 @@ MonoBehaviour:
   numberOfActionsLeft: 0
   DebugActionKey: 287
   ispaused: 0
+  SceneManager: {fileID: 2047009705}
 --- !u!4 &1962944634
 Transform:
   m_ObjectHideFlags: 0
