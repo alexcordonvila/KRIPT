@@ -1645,6 +1645,11 @@ MonoBehaviour:
   numberofactionlevel: 6
   NumberActionsleft: 0
   textActions: {fileID: 0}
+<<<<<<< Updated upstream
+=======
+  initposition: {x: 0, y: 0, z: 0}
+  ispaused: 1
+>>>>>>> Stashed changes
 --- !u!4 &1205879495 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3886954966763024588, guid: 409bce7a5007a3b44976a98cffb35082,

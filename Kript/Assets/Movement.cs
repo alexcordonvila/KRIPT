@@ -406,9 +406,11 @@ public class Movement : MonoBehaviour
     }
     private void DeadRestart()
     {
-        
-        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
-        StartCoroutine(LoadYourAsyncScene());
+        GetComponent<Linker>().ResetUI();
+        /*SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
+        StartCoroutine(LoadYourAsyncScene());*/
+
+        restartLevel();
 
     }
     IEnumerator LoadYourAsyncScene()
@@ -418,6 +420,9 @@ public class Movement : MonoBehaviour
     }
     public void restartLevel()
     {
+
+        GetComponent<Linker>().ResetUI();
+
         //Respawn the player
         this.transform.position = SpawnPoint;
         canMove = true;
