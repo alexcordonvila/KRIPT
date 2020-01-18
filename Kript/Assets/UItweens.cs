@@ -31,6 +31,12 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width +200, "easeType", easyType,  "delay", .6, "oncomplete", "NextScene",
         "oncompletetarget", scenemanager));
         ChangeSelection(optionsp);
+        disableButton(start);
+        disableButton(exit);
+        disableButton(options);
+        disableButton(optionsp);
+        disableButton(exityes);
+
 
     }
 
@@ -73,8 +79,12 @@ public class UItweens : MonoBehaviour
 
     }
 
-    public void ChangeSelection(Button field)
+    public void ChangeSelection(Button btn)
     {
-        field.Select();
+        btn.Select();
+    }
+    public void disableButton(Button btn)
+    {
+        btn.interactable = false;
     }
 }
