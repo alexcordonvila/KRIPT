@@ -17,6 +17,6 @@ public class Door : MonoBehaviour
     }
     //public void onTriggerEnter()
     //{
-
+       // sceneManager.GetComponent<SceneLoader>().NextScene();
     //}
 }
