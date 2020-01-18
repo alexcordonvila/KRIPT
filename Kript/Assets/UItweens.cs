@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+using UnityEngine.EventSystems;
 public class UItweens : MonoBehaviour
 {
 
@@ -9,7 +10,7 @@ public class UItweens : MonoBehaviour
     public Vector3 currentposition;
     public iTween.EaseType easyType;
     public GameObject startgo, exitgo, optionsgo, optionsPanel, exitpanel, scenemanager;
-
+    public Button start, exit, options, optionsp,exityes,exitno;
 
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width + 200, "easeType", easyType, "delay", .3));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width +200, "easeType", easyType,  "delay", .6, "oncomplete", "NextScene",
         "oncompletetarget", scenemanager));
-        
+        ChangeSelection(optionsp);
 
     }
 
@@ -40,7 +41,7 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width + 200, "easeType", easyType, "delay", .1));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width + 200, "easeType", easyType, "delay", .6));
         iTween.MoveTo(optionsPanel, iTween.Hash("y", Screen.height/2  , "easeType", easyType, "delay", .6));
-
+        ChangeSelection(optionsp);
     }
 
     public void OnclickExit()
@@ -49,7 +50,7 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width + 200, "easeType", easyType, "delay", .3));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width + 200, "easeType", easyType, "delay", .1));
         iTween.MoveTo(exitpanel, iTween.Hash("y", Screen.height / 2, "easeType", easyType, "delay", .6));
-
+        ChangeSelection(exityes);
     }
 
     public void OnclickBackexitmenu()
@@ -58,6 +59,7 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width / 2, "easeType", easyType, "delay", .3));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width / 2, "easeType", easyType, "delay", .1));
         iTween.MoveTo(exitpanel, iTween.Hash("y", -150, "easeType", easyType, "delay", .6));
+        ChangeSelection(start);
     }
 
     public void OnclickBackoptionsmenu()
@@ -67,6 +69,12 @@ public class UItweens : MonoBehaviour
         iTween.MoveTo(optionsgo, iTween.Hash("x", Screen.width /2, "easeType", easyType, "delay", .3));
         iTween.MoveTo(exitgo, iTween.Hash("x", Screen.width /2, "easeType", easyType, "delay", .1));
         iTween.MoveTo(optionsPanel, iTween.Hash("y", -450, "easeType", easyType, "delay", .6));
+        ChangeSelection(start);
 
+    }
+
+    public void ChangeSelection(Button field)
+    {
+        field.Select();
     }
 }
