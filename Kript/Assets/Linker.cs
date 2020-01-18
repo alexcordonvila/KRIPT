@@ -10,7 +10,9 @@ public class Linker : MonoBehaviour
     public bool hasactionleft;
     public int numberofactionlevel;
     public int NumberActionsleft;
+
     public TextMeshProUGUI textActions;
+
     public Vector3 initposition;
     public bool ispaused;
 
@@ -58,6 +60,7 @@ public class Linker : MonoBehaviour
             ispaused = !ispaused;
             uiM.openPausemenu();
         }
+
 
     }
 
