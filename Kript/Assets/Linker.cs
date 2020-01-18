@@ -10,7 +10,15 @@ public class Linker : MonoBehaviour
     public bool hasactionleft;
     public int numberofactionlevel;
     public int NumberActionsleft;
+<<<<<<< HEAD
   //  public TextMeshProUGUI textActions;
+=======
+    public TextMeshProUGUI textActions;
+<<<<<<< Updated upstream
+=======
+    public Vector3 initposition;
+    public bool ispaused;
+
 
 
     // Start is called before the first frame update
@@ -19,28 +27,68 @@ public class Linker : MonoBehaviour
         Debug.Log("seteamos las actiones del nivel");
         golist = GameObject.FindGameObjectsWithTag("UIManager");
 
+        initposition = transform.position;
 
-        uiM = golist[0].GetComponent<UIManager>();
+        if (golist.Length != 0)
+        {
+            uiM = golist[0].GetComponent<UIManager>();
 
-        uiM.NumberofActions = numberofactionlevel;
-        uiM.numberOfActionsLeft = numberofactionlevel;
 
-        uiM.settinguiActions();
+            uiM.NumberofActions = numberofactionlevel;
+            uiM.numberOfActionsLeft = numberofactionlevel;
+
+            uiM.settinguiActions();
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (uiM.numberOfActionsLeft > 0) hasactionleft = true;
-        else hasactionleft = false;
+        if (golist.Length != 0)
+        {
+            uiM.ispaused = ispaused;
 
+
+            if (uiM.numberOfActionsLeft > 0) hasactionleft = true;
+            else hasactionleft = false;
+
+            NumberActionsleft = uiM.numberOfActionsLeft;
+        }
+
+
+
+
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.P))
+        {
+            ispaused = !ispaused;
+            uiM.openPausemenu();
+        }
+
+<<<<<<< Updated upstream
         NumberActionsleft = uiM.numberOfActionsLeft;
+<<<<<<< HEAD
       //  textActions.text = NumberActionsleft.ToString();
+=======
+        textActions.text = NumberActionsleft.ToString();
+=======
     }
 
     public void ActionDone()
     {
         uiM.SusbtractActionFromUi();
+
+    }
+
+    public void ResetUI()
+    {
+        if (golist.Length != 0)
+        {
+            transform.position = initposition;
+            uiM.NumberofActions = numberofactionlevel;
+            uiM.numberOfActionsLeft = numberofactionlevel;
+
+            uiM.settinguiActions();
+        }
 
     }
 }
