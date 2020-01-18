@@ -10,12 +10,9 @@ public class Linker : MonoBehaviour
     public bool hasactionleft;
     public int numberofactionlevel;
     public int NumberActionsleft;
-<<<<<<< HEAD
-  //  public TextMeshProUGUI textActions;
-=======
+
     public TextMeshProUGUI textActions;
-<<<<<<< Updated upstream
-=======
+
     public Vector3 initposition;
     public bool ispaused;
 
@@ -64,13 +61,7 @@ public class Linker : MonoBehaviour
             uiM.openPausemenu();
         }
 
-<<<<<<< Updated upstream
-        NumberActionsleft = uiM.numberOfActionsLeft;
-<<<<<<< HEAD
-      //  textActions.text = NumberActionsleft.ToString();
-=======
-        textActions.text = NumberActionsleft.ToString();
-=======
+
     }
 
     public void ActionDone()
