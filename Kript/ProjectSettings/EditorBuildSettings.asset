@@ -9,6 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/Main UI Scene.unity
     guid: d14b7b046337f9447b30589813b6d725
   - enabled: 1
+    path: Assets/Scenes/Transition.unity
+    guid: d05b0da267c45b84ea0b2742b5bd1533
+  - enabled: 1
+    path: Assets/Scenes/scene dash Miguel.unity
+    guid: d58167c75f1f07a4ea178bd089263b2c
+  - enabled: 1
     path: Assets/Scenes/scene dash.unity
     guid: 25b8d96ff6cebca43998727ef75ab40d
   - enabled: 0
@@ -20,7 +26,4 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/lvl 3.unity
     guid: bb18404e83971de438ab4eaf7ec3d7dc
-  - enabled: 1
-    path: Assets/Scenes/Transition.unity
-    guid: d05b0da267c45b84ea0b2742b5bd1533
   m_configObjects: {}
