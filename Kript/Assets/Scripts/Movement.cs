@@ -101,12 +101,12 @@ public class Movement : MonoBehaviour
                 canMove = true;
                 JumpEvent = true;
                 GroundTouch();
-                //  anim.SetBool("Jump", true);
+            
                 DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
             {
-                //WallJump();
+      
                 canMove = false;
             }
         }
@@ -115,29 +115,15 @@ public class Movement : MonoBehaviour
             iTween.Stop(this.gameObject);
             Restart();
         }
-        if (coll.onWall && yRaw!=1)
-        {
-           // iTween.Stop(this.gameObject);
 
-        }
 
         if(coll.onWall && isDashing && yRaw != 1) iTween.Stop(this.gameObject);
-        if (isDashing)
-        {
-         
-        }
+        
         else if (!isDashing && !coll.onGround && !isFalling)
         {
             anim.SetBool("Jump", true);
         }
-        else
-        {
 
-        }
-        if ((coll.onGround || !isDashing) && coll.onWall) 
-        {  
-  
-        }
         if (coll.onWall && !coll.onGround && !wallJumped) //En pared, en el aire y sin pulsar espacio
         {
             if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
@@ -227,15 +213,15 @@ public class Movement : MonoBehaviour
           anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
         
         Jump(Vector2.up, false);
-        //SloWMotionMovement();
+       // SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
         
-        if (col.gameObject.tag == "Platforms" && isFalling)
+        if (col.gameObject.tag == "Platforms")
         {
             GameObject cam = GameObject.Find("Main Camera");
-           // iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
+            iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isFalling = false;
             iTween.Stop(this.gameObject);
             canMove = true;
@@ -244,7 +230,7 @@ public class Movement : MonoBehaviour
         {
             GameObject cam = GameObject.Find("Main Camera");
             GameObject platform = GameObject.FindGameObjectWithTag("MovingPlatforms");
-          //  iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
+            iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isFalling = false;
             canMove = true;
             this.transform.parent = platform.transform;
@@ -422,7 +408,7 @@ public class Movement : MonoBehaviour
         {
             
 
-            //transition();
+            transition();
 
             DeadRestart();
         }

@@ -62,7 +62,7 @@ public class Linker : MonoBehaviour
         }
 
 
-        if (!hasactionleft) GetComponent<Movement>().restartLevel();
+        if (!hasactionleft) GetComponent<Movement>().transition();
 
 
     }

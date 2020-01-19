@@ -50,12 +50,13 @@ public class SceneLoader : MonoBehaviour
     }
     public void NextScene()
     {
+        Debug.Log("Scene num= "+nextScene);
         //if next scene is Not loaded, load next scene
         if (!SceneManager.GetSceneByBuildIndex(nextScene).isLoaded) SceneManager.LoadScene(nextScene, LoadSceneMode.Additive);
 
         if (SceneManager.GetSceneByBuildIndex(backScene).isLoaded) SceneManager.UnloadSceneAsync(backScene);
 
-       // transition();
+        transition();
 
 
         nextScene++;
@@ -74,7 +75,7 @@ public class SceneLoader : MonoBehaviour
 
         currentScene = backScene;
 
-        transition();
+      //  transition();
 
 
         if (SceneManager.GetSceneByBuildIndex(nextScene).isLoaded) SceneManager.UnloadSceneAsync(nextScene);

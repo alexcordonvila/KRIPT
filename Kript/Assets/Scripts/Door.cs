@@ -24,6 +24,7 @@ public class Door : MonoBehaviour
         Debug.Log("toco puerta " + other.name);
         if (other.tag == "Player")
         {
+            Destroy(other);
             Debug.Log("toco puerta");
             other.GetComponent<Linker>().LoadNextScene();
         }
