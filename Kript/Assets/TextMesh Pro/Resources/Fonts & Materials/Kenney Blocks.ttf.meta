@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 38e0702acb8ef05419da8a7bde7b7899
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kenney Blocks
+  fontNames:
+  - Kenney Blocks
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 4f39cceed908493468280df1be556120, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

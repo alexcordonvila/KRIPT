@@ -105,8 +105,9 @@ public class Movement : MonoBehaviour
                 DashEvent = true;
             }
             if (coll.onWall && !coll.onGround && !wallJumped)
-            {         
+            {
                 //WallJump();
+                canMove = false;
             }
         }
         if (coll.onCeiling)
@@ -226,7 +227,7 @@ public class Movement : MonoBehaviour
           anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
         
         Jump(Vector2.up, false);
-        SloWMotionMovement();
+        //SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {
@@ -242,7 +243,7 @@ public class Movement : MonoBehaviour
         if (col.gameObject.tag == "MovingPlatforms")
         {
             GameObject cam = GameObject.Find("Main Camera");
-            GameObject platform = GameObject.Find("MovingPlatforms");
+            GameObject platform = GameObject.FindGameObjectWithTag("MovingPlatforms");
           //  iTween.ShakePosition(cam, iTween.Hash("x", 0.1f, "y", 0.1f, "time", 0.1f));
             isFalling = false;
             canMove = true;
@@ -400,12 +401,14 @@ public class Movement : MonoBehaviour
         float posY = this.transform.position.y;
         float endPosX = posX + (dashRadius * 0);
         float endPosY = posY + (dashRadius * 1);
+       // iTween.ShakeScale(this.gameObject, new Vector3(0.3f, 0.3f, 0.3f), 0.5f);
         iTween.MoveTo(this.gameObject, iTween.Hash("y", endPosY,
                     "islocal", true, "easetype", iTween.EaseType.linear,
-                   "time", 0.1f, "oncomplete", "DeadRestart", "oncompletetarget",this.gameObject));
+                   "time", 0.2f, "oncomplete", "DeadRestart", "oncompletetarget",this.gameObject));
         rb.drag = 100;
-        //GameObject.Find("key_silver").SetActive(true);
         
+        //GameObject.Find("key_silver").SetActive(true);
+
         //PlayDeadAnimation
         //PlayFadeScreenAnimation
 
@@ -429,7 +432,7 @@ public class Movement : MonoBehaviour
         GetComponent<Linker>().ResetUI();
         transition();
 
-       // restartLevel();
+        restartLevel();
 
     }
 
@@ -449,7 +452,7 @@ public class Movement : MonoBehaviour
         GetComponent<Linker>().ResetUI();
         ResetObjective();
         //Respawn the player
-        // this.transform.position = SpawnPoint;
+         this.transform.position = SpawnPoint;
         canMove = true;
         //Reset the usual gravity game
         lowJumpMultiplayer = 2f;

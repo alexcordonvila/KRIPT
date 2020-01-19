@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/scene 2.unity
     guid: 720e583e06a693a4881ef2ed43a2ea06
   - enabled: 0
+    path: Assets/Scenes/scene 100.unity
+    guid: a6b6191b62c3ea941b163395d01de503
+  - enabled: 0
     path: Assets/Scenes/scene dash.unity
     guid: 25b8d96ff6cebca43998727ef75ab40d
   - enabled: 0

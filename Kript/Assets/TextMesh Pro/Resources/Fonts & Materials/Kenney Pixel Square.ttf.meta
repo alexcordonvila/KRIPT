@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: 5937709eaad6a0042b425ee9232f00b8
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Kenney Pixel Square
+  fontNames:
+  - Kenney Pixel Square
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 3a927a5dc548a2542b13b93fb50b6430, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
