@@ -48,6 +48,9 @@ public class Movement : MonoBehaviour
     private Vector2 SpawnPoint;
     private Animator anim;
 
+
+    private GameObject key;
+
     void Start()
     {
         SpawnPoint = new Vector2(this.transform.position.x, this.transform.position.y);
@@ -59,6 +62,7 @@ public class Movement : MonoBehaviour
         hasDashed = false;
         rb.drag = 0.3f;
         anim = GetComponent<Animator>();
+        key = GameObject.Find("key_silver");
     }
     void Update()
     {
@@ -305,7 +309,7 @@ public class Movement : MonoBehaviour
         }
             if (rb.velocity.y < 0 )
             {
-                //isFalling = true;
+              isFalling = true;
             anim.SetBool("Jump", false);
             anim.SetBool("Falling", isFalling);
                 rb.gravityScale = fallMultiplayer;
@@ -400,6 +404,9 @@ public class Movement : MonoBehaviour
                     "islocal", true, "easetype", iTween.EaseType.linear,
                    "time", 0.1f, "oncomplete", "DeadRestart", "oncompletetarget",this.gameObject));
         rb.drag = 100;
+        //GameObject.Find("key_silver").SetActive(true);
+        ResetObjective();
+
         //PlayDeadAnimation
         //PlayFadeScreenAnimation
 
@@ -412,6 +419,7 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Restart"))
         {
             //Application.LoadLevel(Application.loadedLevel);
+            ResetObjective();
             DeadRestart();
         }
     }
@@ -454,5 +462,12 @@ public class Movement : MonoBehaviour
         {
             
         }
+    }
+
+    public void ResetObjective()
+    {
+        key.SetActive(true);
+        GameObject.Find("Door").GetComponent<Animator>().SetBool("OpenDoor", false);
+        GameObject.Find("Door").GetComponent<BoxCollider2D>().enabled = false;
     }
 }
