@@ -55,7 +55,7 @@ public class SceneLoader : MonoBehaviour
 
         if (SceneManager.GetSceneByBuildIndex(backScene).isLoaded) SceneManager.UnloadSceneAsync(backScene);
 
-        transition();
+       // transition();
 
 
         nextScene++;

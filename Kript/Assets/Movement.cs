@@ -405,8 +405,7 @@ public class Movement : MonoBehaviour
                    "time", 0.1f, "oncomplete", "DeadRestart", "oncompletetarget",this.gameObject));
         rb.drag = 100;
         //GameObject.Find("key_silver").SetActive(true);
-        ResetObjective();
-
+        
         //PlayDeadAnimation
         //PlayFadeScreenAnimation
 
@@ -418,11 +417,9 @@ public class Movement : MonoBehaviour
     {
         if (Input.GetButtonDown("Restart"))
         {
-            //Application.LoadLevel(Application.loadedLevel);
+            
 
-            ResetObjective();
-
-            transition();
+            //transition();
 
             DeadRestart();
         }
@@ -432,7 +429,7 @@ public class Movement : MonoBehaviour
         GetComponent<Linker>().ResetUI();
         transition();
 
-        restartLevel();
+       // restartLevel();
 
     }
 
@@ -450,9 +447,9 @@ public class Movement : MonoBehaviour
     {
 
         GetComponent<Linker>().ResetUI();
-
+        ResetObjective();
         //Respawn the player
-        this.transform.position = SpawnPoint;
+        // this.transform.position = SpawnPoint;
         canMove = true;
         //Reset the usual gravity game
         lowJumpMultiplayer = 2f;
