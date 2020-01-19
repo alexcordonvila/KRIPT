@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
+
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -15,8 +18,14 @@ public class Door : MonoBehaviour
     {
         
     }
-    //public void onTriggerEnter()
-    //{
-       // sceneManager.GetComponent<SceneLoader>().NextScene();
-    //}
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        Debug.Log("toco puerta " + other.name);
+        if (other.tag == "Player")
+        {
+            Debug.Log("toco puerta");
+            other.GetComponent<Linker>().LoadNextScene();
+        }
+    }
 }

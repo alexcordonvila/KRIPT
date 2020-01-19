@@ -11,6 +11,7 @@ public class UIManager : MonoBehaviour
     public int numberOfActionsLeft;
     public KeyCode DebugActionKey;
     public bool ispaused;
+    public GameObject SceneManager;
 
 
     void Start()
@@ -73,5 +74,11 @@ public class UIManager : MonoBehaviour
     public void onlcikccontinuebutton()
     {
 
+    }
+
+
+    public void nextscene()
+    {
+        SceneManager.GetComponent<SceneLoader>().NextScene();
     }
 }

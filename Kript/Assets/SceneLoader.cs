@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 
@@ -36,9 +37,15 @@ public class SceneLoader : MonoBehaviour
         currentScene = SceneManager.GetActiveScene().buildIndex;
 
         if (currentScene == 0) backScene = _sceneCountInBuildSettings - 1;
+        else if (currentScene == 1)
+        {
+            backScene = _sceneCountInBuildSettings - 1;
+        }
         else backScene = currentScene - 1;
 
-        if (currentScene >= _sceneCountInBuildSettings - 1) nextScene = 1;
+        if (currentScene >= _sceneCountInBuildSettings - 1) nextScene = 2;
+        else if (currentScene == 1) nextScene = 2;
+        else if (currentScene == _managerScene) nextScene = 2;
         else nextScene = currentScene + 1;
     }
     public void NextScene()
@@ -48,11 +55,12 @@ public class SceneLoader : MonoBehaviour
 
         if (SceneManager.GetSceneByBuildIndex(backScene).isLoaded) SceneManager.UnloadSceneAsync(backScene);
 
- 
+        transition();
+
 
         nextScene++;
         backScene++;
-        if (backScene >= _sceneCountInBuildSettings) backScene = 1;
+        if (backScene >= _sceneCountInBuildSettings) backScene = 2;
         if (nextScene >= _sceneCountInBuildSettings) UpdateSceneState();
 
 
@@ -65,6 +73,8 @@ public class SceneLoader : MonoBehaviour
         if (!SceneManager.GetSceneByBuildIndex(backScene).isLoaded) SceneManager.LoadScene(backScene, LoadSceneMode.Additive);
 
         currentScene = backScene;
+
+        transition();
 
 
         if (SceneManager.GetSceneByBuildIndex(nextScene).isLoaded) SceneManager.UnloadSceneAsync(nextScene);
@@ -93,5 +103,15 @@ public class SceneLoader : MonoBehaviour
     {
         _sceneCountInBuildSettings = SceneManager.sceneCountInBuildSettings;
         return _sceneCountInBuildSettings;
+    }
+
+    public void transition()
+    {
+        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
+        StartCoroutine(LoadYourAsyncScene());
+    }
+    IEnumerator LoadYourAsyncScene()
+    {
+        yield return new WaitForSeconds(0.3f);
     }
 }

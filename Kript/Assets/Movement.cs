@@ -419,18 +419,27 @@ public class Movement : MonoBehaviour
         if (Input.GetButtonDown("Restart"))
         {
             //Application.LoadLevel(Application.loadedLevel);
+
             ResetObjective();
+
+            transition();
+
             DeadRestart();
         }
     }
     private void DeadRestart()
     {
         GetComponent<Linker>().ResetUI();
-        /*SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
-        StartCoroutine(LoadYourAsyncScene());*/
+        transition();
 
         restartLevel();
 
+    }
+
+    public void transition()
+    {
+        SceneManager.LoadScene("Transition", LoadSceneMode.Additive);
+        StartCoroutine(LoadYourAsyncScene());
     }
     IEnumerator LoadYourAsyncScene()
     {

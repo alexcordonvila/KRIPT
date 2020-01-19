@@ -62,6 +62,9 @@ public class Linker : MonoBehaviour
         }
 
 
+        if (!hasactionleft) GetComponent<Movement>().restartLevel();
+
+
     }
 
     public void ActionDone()
@@ -81,5 +84,13 @@ public class Linker : MonoBehaviour
             uiM.settinguiActions();
         }
 
+    }
+
+    public void LoadNextScene()
+    {
+        if (golist.Length != 0)
+        {
+            uiM.nextscene();
+        }
     }
 }
