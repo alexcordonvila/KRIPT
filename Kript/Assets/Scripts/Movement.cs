@@ -213,7 +213,7 @@ public class Movement : MonoBehaviour
           anim.SetBool("Run", Input.GetAxis("Horizontal") > 0 || Input.GetAxis("Horizontal") < 0);
         
         Jump(Vector2.up, false);
-       // SloWMotionMovement();
+        SloWMotionMovement();
     }
     void OnCollisionEnter2D(Collision2D col)
     {

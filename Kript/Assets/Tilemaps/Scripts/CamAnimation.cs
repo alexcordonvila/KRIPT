@@ -12,7 +12,7 @@ public class CamAnimation : MonoBehaviour
     private IEnumerator coroutine;
     void Start()
     {
-        Camera.main.backgroundColor = new Color(Random.value, Random.value, Random.value);
+        cam.backgroundColor = new Color(Random.value, Random.value, Random.value);
         StartNewCoroutine();
     }
 
