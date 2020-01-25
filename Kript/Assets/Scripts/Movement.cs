@@ -129,12 +129,10 @@ public class Movement : MonoBehaviour
             if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
             {
                 this.x = 0;
-                Debug.Log("En aire y pared dcha");
             }
             else
             {
                 this.x = 0;
-                Debug.Log("En aire y pared izda");
             }
             if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
             {
@@ -166,12 +164,10 @@ public class Movement : MonoBehaviour
             if (side != coll.wallSide && Input.GetAxis("Horizontal") > 0)
             {
                 this.x = 0;
-                Debug.Log("Paret de la dreta");
             }
             else
             {
                 this.x = 0;
-                Debug.Log("Paret de l'esquerra");
             }
             if (side != coll.wallSide && Input.GetAxis("Horizontal") <= 0)
             {
@@ -310,7 +306,6 @@ public class Movement : MonoBehaviour
     IEnumerator DisableMovement(float time)
     {
         canMove = false;
-        Debug.Log("SpaceReleased");
         yield return new WaitForSeconds(time);
         canMove = true;    
     }
@@ -328,7 +323,6 @@ public class Movement : MonoBehaviour
     {
         DashEvent = false;
         canMove = false;
-        Debug.Log("DasH!");
         hasDashed = true;
         isDashing = true;
         rb.gravityScale = 3;
@@ -368,7 +362,7 @@ public class Movement : MonoBehaviour
     }
     private void SloWMotionMovement()
     {
-        if (Input.GetAxis("Fire1") != 0)
+        if (Input.GetAxis("Rtrigger") != 0)
         {
             Time.timeScale = 0.5f;
             Time.fixedDeltaTime = 0.02F * Time.timeScale;

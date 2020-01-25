@@ -21,7 +21,6 @@ public class Linker : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("seteamos las actiones del nivel");
         golist = GameObject.FindGameObjectsWithTag("UIManager");
 
         initposition = transform.position;

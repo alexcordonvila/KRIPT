@@ -30,11 +30,8 @@ public class LimitedMovement : MonoBehaviour
     void Update()
     {
         numMovements = player.GetComponent<Movement>().numMovements;
-       // Debug.Log(numMovements + " , "+ MAXMOVEMENTS);
         if (Input.GetButtonDown("Jump") && numMovements<MAXMOVEMENTS)
         {
-            //dottemp = this.gameObject.transform.GetChild(this.transform.childCount - 1).gameObject;
-            //Destroy(dottemp);
         }
         if (numMovements >= MAXMOVEMENTS)
         {

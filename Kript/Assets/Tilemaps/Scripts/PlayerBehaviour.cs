@@ -196,7 +196,6 @@ public class PlayerBehaviour : MonoBehaviour
       
         else if (rb.velocity.y > 0  && !Input.GetButton("Jump"))
         {
-            Debug.Log("ButtonReleased");
             //rb.velocity += Vector2.up * Physics2D.gravity.y * (lowJumpMultiplayer - 1) * Time.deltaTime;
             rb.gravityScale = lowJumpMultiplayer;
         }

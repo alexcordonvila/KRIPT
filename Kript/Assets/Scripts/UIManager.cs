@@ -49,13 +49,11 @@ public class UIManager : MonoBehaviour
         for (int i = 0; i < ActionsGameobject.Length; i++)
         {
             ActionsGameobject[i].SetActive(true);
-            //Debug.Log("ponemos todo a true");
         }
 
         for (int i = NumberofActions; i < ActionsGameobject.Length; i++)
         {
             ActionsGameobject[i].SetActive(false);
-            // Debug.Log("ponemos todo a false menos actions");
 
         }
     }

@@ -1,1 +1,17 @@
-Test
+Para lanzar el juego correctamente hay que empezar por la escena "Main UI Scene". 
+
+Para jugar con teclado:
+WASD para mover player.
+SPACE para saltar.
+G + WASD para dash.
+R para reiniciar nivel.
+
+Para jugar con mando (xbox):
+A para saltar.
+Joystick izdo o flechas direccionales para mover.
+X para hacer dash.
+B para reiniciar nivel.
+
+El objetivo en cada nivel es coger la llave y llegar a la puerta.
+La norma principal del juego es que si te quedas sin movimientos vuelves a empezar el nivel.
+Se indican los movimientos restantes con círculos en la zona inferior de la pantalla.
