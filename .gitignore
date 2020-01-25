@@ -3,8 +3,9 @@
 [Oo]bj/
 [Bb]uild/
 [Bb]uilds/
+[Kk]RIPT PRODUCTION/
 Assets/AssetStoreTools*
-KRIPT PRODUCTION/
+
 
 # Visual Studio cache directory
 .vs/
